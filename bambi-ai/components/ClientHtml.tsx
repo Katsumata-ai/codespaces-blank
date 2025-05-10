@@ -6,7 +6,7 @@ interface ClientHtmlProps {
   children: React.ReactNode;
   lang: string;
   className: string;
-  translate: string;
+  translate: "yes" | "no";
   inter: string;
 }
 

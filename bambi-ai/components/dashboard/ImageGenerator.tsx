@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  ChevronDownIcon, 
-  ChevronUpIcon, 
-  DownloadIcon, 
-  ShareIcon, 
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  DownloadIcon,
+  ShareIcon,
   RefreshCwIcon,
   Loader2Icon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
+import { Select } from "@/components/ui/select";
 
 // Types pour les configurations API et les images générées
 type ApiConfig = {
@@ -36,32 +37,32 @@ export function ImageGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Exemple de configurations API (à remplacer par des données réelles)
   const apiConfigs: ApiConfig[] = [
     { id: "1", name: "Ma clé OpenAI", provider: "OpenAI" },
     { id: "2", name: "Stability AI", provider: "Stability AI" },
   ];
-  
+
   // Fonction de génération d'images
   const generateImages = async () => {
     if (!selectedConfig) {
       setError("Veuillez sélectionner une configuration API.");
       return;
     }
-    
+
     if (!prompt.trim()) {
       setError("Veuillez saisir un prompt.");
       return;
     }
-    
+
     setError(null);
     setIsGenerating(true);
-    
+
     try {
       // Simulation de génération d'images (à remplacer par l'appel API réel)
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Exemple de résultats (à remplacer par les résultats réels)
       const newImages: GeneratedImage[] = Array.from({ length: imageCount }, (_, i) => ({
         id: `img-${Date.now()}-${i}`,
@@ -69,7 +70,7 @@ export function ImageGenerator() {
         prompt,
         timestamp: new Date(),
       }));
-      
+
       setGeneratedImages(newImages);
     } catch (err) {
       setError("Erreur lors de la génération. Veuillez réessayer.");
@@ -77,11 +78,11 @@ export function ImageGenerator() {
       setIsGenerating(false);
     }
   };
-  
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Générer des Images</h1>
-      
+
       {/* Zone de Configuration & Prompt */}
       <Card className="p-6 bg-bambi-card border border-bambi-border">
         {/* Sélecteur de Configuration API */}
@@ -89,12 +90,12 @@ export function ImageGenerator() {
           <label className="block text-sm font-medium mb-2">
             Configuration API active :
           </label>
-          
+
           {apiConfigs.length === 0 ? (
             <div className="text-center p-4 border border-dashed border-bambi-border rounded-lg">
               <p className="text-bambi-subtext mb-2">Aucune clé API configurée.</p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="text-bambi-accent border-bambi-accent"
                 onClick={() => window.location.href = "/api-keys"}
               >
@@ -102,21 +103,19 @@ export function ImageGenerator() {
               </Button>
             </div>
           ) : (
-            <select
+            <Select
               value={selectedConfig || ""}
               onChange={(e) => setSelectedConfig(e.target.value)}
-              className="w-full p-2 rounded-md bg-bambi-background border border-bambi-border text-bambi-text"
-            >
-              <option value="" disabled>Sélectionner une configuration</option>
-              {apiConfigs.map(config => (
-                <option key={config.id} value={config.id}>
-                  {config.name} ({config.provider})
-                </option>
-              ))}
-            </select>
+              className="bg-bambi-background border-bambi-border"
+              placeholder="Sélectionner une configuration"
+              options={apiConfigs.map(config => ({
+                value: config.id,
+                label: `${config.name} (${config.provider})`
+              }))}
+            />
           )}
         </div>
-        
+
         {/* Champ Prompt */}
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">
@@ -129,7 +128,7 @@ export function ImageGenerator() {
             className="min-h-[100px] bg-bambi-background border-bambi-border"
           />
         </div>
-        
+
         {/* Options Avancées */}
         <div className="mb-6">
           <button
@@ -144,7 +143,7 @@ export function ImageGenerator() {
             )}
             Options avancées
           </button>
-          
+
           {isAdvancedOpen && (
             <div className="mt-4 p-4 bg-bambi-background/50 rounded-lg space-y-4">
               <div>
@@ -168,12 +167,12 @@ export function ImageGenerator() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Autres options avancées à ajouter ici */}
             </div>
           )}
         </div>
-        
+
         {/* Bouton de génération */}
         <Button
           className="w-full btn-primary"
@@ -189,7 +188,7 @@ export function ImageGenerator() {
             "✨ Générer"
           )}
         </Button>
-        
+
         {/* Message d'erreur */}
         {error && (
           <div className="mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm">
@@ -197,7 +196,7 @@ export function ImageGenerator() {
           </div>
         )}
       </Card>
-      
+
       {/* Zone de Résultats */}
       <div>
         {isGenerating ? (
