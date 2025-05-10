@@ -19,6 +19,29 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+      keyframes: {
+        'marquee': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
+        },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' }
+        },
+        'grid': {
+          '0%': { transform: 'translateZ(0)' },
+          '100%': { transform: 'translateZ(80px)' }
+        }
+      },
+      animation: {
+        'marquee': 'marquee 60s linear infinite',
+        'marquee-reverse': 'marquee-reverse 60s linear infinite',
+        'marquee-slow': 'marquee 80s linear infinite',
+        'marquee-reverse-slow': 'marquee-reverse 80s linear infinite',
+        'marquee-fast': 'marquee 40s linear infinite',
+        'marquee-reverse-fast': 'marquee-reverse 40s linear infinite',
+        'grid': 'grid 10s linear infinite',
+      },
   		colors: {
         bambi: {
           background: '#0D0C1D',

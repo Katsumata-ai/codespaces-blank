@@ -103,6 +103,26 @@
            uppercase tracking-wide text-sm;
   }
 
+  .btn-gallery {
+    @apply bg-button-gradient text-white font-medium py-3 px-6 rounded-lg
+           hover:shadow-[0_0_15px_rgba(123,92,250,0.5)] transition-all duration-300
+           uppercase tracking-wide text-sm flex items-center justify-center gap-2
+           transform hover:scale-105;
+  }
+
+  .btn-cta-primary {
+    @apply bg-button-gradient text-white font-bold py-3.5 px-8 rounded-lg
+           hover:shadow-[0_0_20px_rgba(123,92,250,0.6)] transition-all duration-300
+           uppercase tracking-wide text-sm flex items-center justify-center gap-2
+           transform hover:scale-105 hover:brightness-110;
+  }
+
+  .btn-cta-secondary {
+    @apply bg-transparent border border-bambi-accent/70 text-bambi-accent font-medium py-2.5 px-5 rounded-lg
+           hover:bg-bambi-accent/10 hover:border-bambi-accent transition-all duration-300
+           tracking-wide text-sm flex items-center justify-center gap-1;
+  }
+
   .section-title {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold text-bambi-text mb-4;
   }
@@ -118,5 +138,83 @@
 
   .nav-link {
     @apply text-bambi-subtext hover:text-bambi-text transition-colors duration-200;
+  }
+
+  /* Hide scrollbars but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  /* Pause animation on hover */
+  .pause-on-hover:hover > * {
+    animation-play-state: paused;
+  }
+
+  /* Gallery mask gradients - more subtle but still effective */
+  .gallery-mask-left {
+    background: linear-gradient(to right, #0D0C1D 30%, rgba(13, 12, 29, 0.85) 60%, rgba(13, 12, 29, 0.6) 80%, rgba(13, 12, 29, 0.2) 95%, rgba(13, 12, 29, 0));
+  }
+
+  .gallery-mask-right {
+    background: linear-gradient(to left, #0D0C1D 30%, rgba(13, 12, 29, 0.85) 60%, rgba(13, 12, 29, 0.6) 80%, rgba(13, 12, 29, 0.2) 95%, rgba(13, 12, 29, 0));
+  }
+
+  /* Mobile-specific masks with reduced width */
+  .gallery-mask-left-mobile {
+    background: linear-gradient(to right, #0D0C1D 20%, rgba(13, 12, 29, 0.85) 50%, rgba(13, 12, 29, 0.6) 75%, rgba(13, 12, 29, 0.2) 90%, rgba(13, 12, 29, 0));
+  }
+
+  .gallery-mask-right-mobile {
+    background: linear-gradient(to left, #0D0C1D 20%, rgba(13, 12, 29, 0.85) 50%, rgba(13, 12, 29, 0.6) 75%, rgba(13, 12, 29, 0.2) 90%, rgba(13, 12, 29, 0));
+  }
+
+  /* Gallery container with hidden overflow */
+  .gallery-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Effet de grille pour le fond */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(123, 92, 250, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(123, 92, 250, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Animation de pulsation subtile */
+  @keyframes pulse-subtle {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  /* Styles pour le défilement fluide */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ajustement pour les sections ciblées par les ancres */
+  section[id] {
+    scroll-margin-top: 80px;
   }
 }

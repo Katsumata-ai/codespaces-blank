@@ -19,19 +19,12 @@ export default function ClientHtml({ children, lang, className, translate, inter
     setIsClient(true);
   }, []);
 
-  // Pendant le rendu serveur ou la première hydratation, utiliser suppressHydrationWarning
-  if (!isClient) {
-    return (
-      <html lang={lang} className={className} translate={translate} suppressHydrationWarning>
-        <body className={inter}>{children}</body>
-      </html>
-    );
-  }
-
-  // Une fois que nous sommes côté client, nous pouvons rendre normalement
+  // Utiliser suppressHydrationWarning pour éviter les erreurs d'hydratation
   return (
-    <html lang={lang} className={className} translate={translate}>
-      <body className={inter}>{children}</body>
+    <html lang={lang} className={className} translate={translate} suppressHydrationWarning>
+      <body className={inter} suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

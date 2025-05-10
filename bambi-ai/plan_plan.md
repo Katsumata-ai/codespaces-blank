@@ -299,7 +299,18 @@ CREATE TABLE subscriptions (
    - Prévention: Refresh tokens, validation côté serveur, protection CSRF
    - Documentation: Flux d'authentification sécurisés
 
-6. **Erreurs d'hydratation React/Next.js**
+6. **Incompatibilité des versions React/Next.js**
+   - Risque: Utilisation de versions expérimentales ou incompatibles (React 19.x, Next.js 15.x)
+   - Symptômes: Erreurs d'hydratation, fonctionnalités manquantes, comportements inattendus
+   - Solution:
+     - Toujours utiliser les versions stables spécifiées dans ce document (React 18.2.0, Next.js 13.5.6)
+     - Vérifier la compatibilité des dépendances avant mise à jour
+     - Utiliser des versions exactes dans package.json (sans ^) pour les dépendances critiques
+     - Tester rigoureusement après toute mise à jour de dépendance
+   - Prévention: Script de vérification des versions au démarrage du projet
+   - Documentation: Matrice de compatibilité des versions et procédure de mise à jour
+
+7. **Erreurs d'hydratation React/Next.js**
    - Risque: Divergences entre le HTML rendu côté serveur et côté client
    - Causes: Extensions de navigateur (traduction automatique), fonctionnalités intégrées au navigateur qui modifient le DOM
    - Symptômes: Erreurs "Hydration failed because the server rendered HTML didn't match the client"
@@ -342,6 +353,23 @@ CREATE TABLE subscriptions (
    - Développement, staging et production
    - Tests de non-régression avant déploiement
    - Procédures de déploiement documentées
+
+6. **Gestion des versions et dépendances**
+   - Script de vérification des versions au démarrage du projet
+   - Utilisation de versions exactes pour les dépendances critiques
+   - Procédure de mise à jour documentée avec tests de régression
+   - Solution pour les problèmes de versions incompatibles:
+     ```bash
+     # En cas d'utilisation accidentelle de versions expérimentales (React 19.x, Next.js 15.x)
+     # 1. Mettre à jour package.json avec les versions stables
+     # 2. Supprimer node_modules et package-lock.json
+     cd /chemin/vers/projet
+     rm -rf node_modules package-lock.json
+     # 3. Réinstaller les dépendances
+     npm install
+     # 4. Vérifier les composants client pour les erreurs d'hydratation
+     # 5. Simplifier les composants ClientHtml et autres wrappers client
+     ```
 
 ### Commandes d'initialisation du projet (avec versions spécifiées)
 ```bash

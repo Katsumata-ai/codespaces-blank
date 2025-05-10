@@ -1,40 +1,62 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { MessageSquare } from 'lucide-react';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
-      question: 'What is Bambi AI?',
+      question: "Qu'est-ce que Bambi AI ?",
       answer:
-        'Bambi AI is a web application that allows you to generate high-quality images using AI models through your own API keys (BYOK - Bring Your Own Key). We support multiple providers including OpenAI, Stability AI, Google, Hugging Face, and OpenRouter.',
+        "Bambi AI est une plateforme web qui vous permet de générer des images de haute qualité en utilisant vos propres clés API (BYOK - Bring Your Own Key). Notre interface simple et intuitive est compatible avec les principaux fournisseurs d'IA comme OpenAI, Google et XAI.",
     },
     {
-      question: 'How does the BYOK (Bring Your Own Key) system work?',
+      question: "Comment fonctionne le système BYOK (Bring Your Own Key) ?",
       answer:
-        'Our BYOK system allows you to use your own API keys from supported providers. Your keys are encrypted with AES-256 encryption and never exposed in the frontend. All API calls are proxied through our secure backend to ensure maximum security.',
+        "Notre système BYOK vous permet d'utiliser vos propres clés API des fournisseurs supportés. Vos clés sont chiffrées avec un cryptage AES-256 et ne sont jamais exposées côté frontend. Toutes les requêtes API passent par notre proxy sécurisé pour garantir une sécurité maximale.",
     },
     {
-      question: 'Is there a free plan available?',
+      question: "Quels sont les avantages d'utiliser mes propres clés API ?",
       answer:
-        'Yes! Our free plan includes 50 image generations per month and allows you to save one API configuration. This is perfect for trying out the service or for occasional use.',
+        "Utiliser vos propres clés API vous donne un contrôle total sur vos coûts, vous permet d'utiliser les crédits que vous avez déjà achetés, et vous offre la flexibilité de choisir le fournisseur et le modèle qui conviennent le mieux à vos besoins. Vous n'êtes pas limité à un seul service et pouvez facilement passer d'un fournisseur à l'autre.",
     },
     {
-      question: 'What do I get with the Premium plan?',
+      question: "Y a-t-il un plan gratuit disponible ?",
       answer:
-        'The Premium plan ($5/month or $50/year) includes unlimited image generations, unlimited API configurations, HD resolution exports (4K, SVG), complete history with organization features, priority support, and advanced prompt tools.',
+        "Oui ! Notre plan gratuit inclut 50 générations d'images par mois et vous permet de sauvegarder une configuration API. C'est parfait pour essayer le service ou pour une utilisation occasionnelle.",
     },
     {
-      question: 'Which AI image generation providers are supported?',
+      question: "Que comprend le plan Premium ?",
       answer:
-        'We currently support OpenAI (DALL·E), Stability AI (Stable Diffusion), Google (Imagen), Hugging Face, and OpenRouter. We regularly add support for new providers as they become available.',
+        "Le plan Premium (5€/mois ou 50€/an avec 20% de réduction) inclut des générations d'images illimitées, des configurations API illimitées, des exports en haute résolution (4K, SVG), un historique complet avec des fonctionnalités d'organisation, un support prioritaire et des outils avancés pour optimiser vos prompts.",
     },
     {
-      question: 'How secure are my API keys?',
+      question: "Quels fournisseurs d'IA pour la génération d'images sont supportés ?",
       answer:
-        'Security is our top priority. Your API keys are encrypted with AES-256 encryption before being stored in our database. All API calls are made through our secure backend proxy, so your keys are never exposed to the client side or third parties.',
+        "Nous supportons actuellement OpenAI (DALL·E), Google (Imagen) et XAI (Grok). Nous travaillons continuellement à l'amélioration de notre plateforme et pourrons ajouter le support pour d'autres fournisseurs à l'avenir selon les besoins de nos utilisateurs.",
+    },
+    {
+      question: "Comment mes clés API sont-elles sécurisées ?",
+      answer:
+        "La sécurité est notre priorité absolue. Vos clés API sont chiffrées avec un cryptage AES-256 avant d'être stockées dans notre base de données. Toutes les requêtes API sont effectuées via notre proxy backend sécurisé, de sorte que vos clés ne sont jamais exposées côté client ou à des tiers.",
+    },
+    {
+      question: "Comment puis-je commencer à utiliser Bambi AI ?",
+      answer:
+        "C'est simple ! Inscrivez-vous gratuitement, ajoutez votre clé API dans la section \"Clés API\", écrivez votre prompt dans l'interface principale et cliquez sur \"Générer\". Vous pouvez ensuite télécharger ou partager vos images générées en quelques secondes.",
+    },
+    {
+      question: "Puis-je utiliser Bambi AI sur mobile ?",
+      answer:
+        "Absolument ! Bambi AI est entièrement responsive et fonctionne parfaitement sur tous les appareils, qu'il s'agisse d'un ordinateur de bureau, d'une tablette ou d'un smartphone.",
+    },
+    {
+      question: "Comment puis-je obtenir de l'aide si j'ai des questions ?",
+      answer:
+        "Vous pouvez nous contacter à tout moment via notre formulaire de contact ou par email à support@bambi-ai.com. Les utilisateurs Premium bénéficient d'un support prioritaire avec des temps de réponse garantis.",
     },
   ];
 
@@ -47,12 +69,12 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20 bg-bambi-card/30">
+    <section id="faq" className="py-20 bg-bambi-card/30">
       <div className="container-landing">
         <div className="text-center mb-16">
-          <h2 className="section-title">Frequently Asked Questions</h2>
+          <h2 className="section-title">Vous avez des questions ? Nous avons des réponses</h2>
           <p className="section-subtitle">
-            Find answers to common questions about Bambi AI
+            Tout ce que vous devez savoir sur Bambi AI
           </p>
         </div>
 
@@ -92,6 +114,23 @@ const FAQ = () => {
               </div>
             </div>
           ))}
+
+          {/* CTA et bouton de contact */}
+          <div className="mt-12 text-center">
+            <h3 className="text-xl font-semibold mb-4">Prêt à essayer Bambi AI ?</h3>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/signup" className="btn-primary">
+                Commencer gratuitement
+              </Link>
+              <Link href="/contact" className="btn-secondary flex items-center justify-center gap-2">
+                <MessageSquare className="h-4 w-4" />
+                Nous contacter
+              </Link>
+            </div>
+            <p className="mt-4 text-sm text-bambi-subtext">
+              Aucune carte de crédit requise pour le plan gratuit
+            </p>
+          </div>
         </div>
       </div>
     </section>

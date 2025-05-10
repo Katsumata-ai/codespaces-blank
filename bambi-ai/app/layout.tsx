@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ClientHtml from '../components/ClientHtml'
+import { Providers } from '@/components/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,9 +16,15 @@ export const metadata: Metadata = {
 // avant que React ne commence l'hydratation
 const fixHydrationScript = `
   (function() {
-    var html = document.documentElement;
-    html.setAttribute('lang', 'en');
-    html.className = 'dark';
+    try {
+      var html = document.documentElement;
+      if (html) {
+        html.setAttribute('lang', 'en');
+        html.className = 'dark';
+      }
+    } catch (e) {
+      console.error('Hydration script error:', e);
+    }
   })();
 `;
 
@@ -30,7 +37,9 @@ export default function RootLayout({
     <ClientHtml lang="en" className="dark" translate="no" inter={inter.className}>
       {/* Script pour forcer les attributs avant hydratation */}
       <script dangerouslySetInnerHTML={{ __html: fixHydrationScript }} />
-      {children}
+      <Providers>
+        {children}
+      </Providers>
     </ClientHtml>
   )
 }
