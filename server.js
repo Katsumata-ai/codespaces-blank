@@ -5,6 +5,9 @@
  * Gère le fallback vers index.html pour toutes les routes SPA
  */
 
+// Charger les variables d'environnement depuis .env
+require('dotenv').config();
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -81,9 +84,44 @@ function serveFile(filePath, res) {
     });
 }
 
+function handleApiRequest(req, res) {
+    const parsedUrl = url.parse(req.url, true);
+    const pathname = parsedUrl.pathname;
+
+    // Route pour la configuration Supabase
+    if (pathname === '/api/config') {
+        res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type'
+        });
+
+        const config = {
+            supabase: {
+                url: process.env.SUPABASE_URL,
+                anonKey: process.env.SUPABASE_ANON_KEY
+            },
+            baseUrl: process.env.BASE_URL || `http://${HOST}:${PORT}`
+        };
+
+        res.end(JSON.stringify(config));
+        return true;
+    }
+
+    return false;
+}
+
 function serveSPA(req, res) {
     const parsedUrl = url.parse(req.url);
     let pathname = parsedUrl.pathname;
+
+    // Gérer les requêtes API
+    if (pathname.startsWith('/api/')) {
+        if (handleApiRequest(req, res)) {
+            return;
+        }
+    }
 
     // Nettoyer le pathname
     if (pathname === '/') {

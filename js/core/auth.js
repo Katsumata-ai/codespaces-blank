@@ -1,22 +1,44 @@
 // Gestionnaire d'authentification Supabase pour Dafnck Army
 class AuthManager {
     constructor() {
-        this.supabase = window.supabaseClient;
+        this.supabase = null;
         this.state = window.appState;
         this.lastAuthEvent = null;
         this.authEventTimeout = null;
         this.init();
     }
-    
+
     async init() {
+        // Attendre que Supabase soit initialisé
+        await this.waitForSupabase();
+
         // Écouter les changements d'authentification
         this.supabase.auth.onAuthStateChange((event, session) => {
             console.log('🔐 Auth state changed:', event, session?.user?.email);
             this.handleAuthStateChange(event, session);
         });
-        
+
         // Vérifier la session actuelle
         await this.checkSession();
+    }
+
+    async waitForSupabase() {
+        // Attendre que Supabase soit disponible
+        let attempts = 0;
+        const maxAttempts = 50; // 5 secondes max
+
+        while (!window.supabaseClient && attempts < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
+        if (window.supabaseClient) {
+            this.supabase = window.supabaseClient;
+            console.log('✅ AuthManager connected to Supabase');
+        } else {
+            console.error('❌ AuthManager: Timeout waiting for Supabase initialization');
+            throw new Error('Supabase not available');
+        }
     }
     
     async handleAuthStateChange(event, session) {
