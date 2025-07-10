@@ -1,0 +1,446 @@
+/* Styles pour les pages d'authentification */
+
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+/* Header */
+.auth-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.auth-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.auth-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Contenu principal */
+.auth-content {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+/* Formulaire d'authentification */
+.auth-form-container {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-3xl);
+    box-shadow: var(--shadow-xl);
+}
+
+.auth-form-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.auth-form-header h1 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.auth-form-header p {
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* Onglets */
+.auth-tabs {
+    display: flex;
+    background: var(--gray-100);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-xl);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: var(--spacing-md);
+    border: none;
+    background: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.auth-tab.active {
+    background: var(--white);
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Formulaire */
+.auth-form-content {
+    margin-bottom: var(--spacing-xl);
+}
+
+.auth-submit {
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Divider */
+.auth-divider {
+    position: relative;
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gray-200);
+}
+
+.auth-divider span {
+    background: var(--white);
+    padding: 0 var(--spacing-md);
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+/* OAuth */
+.auth-oauth {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.oauth-btn {
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.oauth-btn svg {
+    position: absolute;
+    left: var(--spacing-lg);
+}
+
+/* Footer */
+.auth-footer {
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+.auth-link {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* Checkbox personnalisé */
+.form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.form-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-mark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.form-checkbox input[type="checkbox"]:checked + .checkbox-mark {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.form-checkbox input[type="checkbox"]:checked + .checkbox-mark::after {
+    content: '✓';
+    color: var(--white);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-checkbox a {
+    color: var(--accent-color);
+}
+
+/* Partie visuelle */
+.auth-visual {
+    color: var(--white);
+}
+
+.auth-illustration h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.2;
+}
+
+.auth-illustration p {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.9;
+}
+
+.auth-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.auth-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+    
+    .auth-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .auth-visual {
+        order: -1;
+        text-align: center;
+    }
+    
+    .auth-illustration h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-page {
+        padding: var(--spacing-md);
+    }
+    
+    .auth-form-container {
+        padding: var(--spacing-xl);
+    }
+    
+    .auth-illustration h2 {
+        font-size: 1.75rem;
+    }
+    
+    .auth-features {
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .auth-tabs {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .oauth-btn {
+        font-size: 0.875rem;
+        padding: var(--spacing-md);
+    }
+    
+    .oauth-btn svg {
+        width: 16px;
+        height: 16px;
+        left: var(--spacing-md);
+    }
+}
+
+/* Messages de succès et confirmation */
+.signup-success {
+    text-align: center;
+    padding: var(--spacing-3xl);
+}
+
+.success-icon {
+    color: var(--success-color, #27ae60);
+    margin-bottom: var(--spacing-lg);
+}
+
+.signup-success h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    font-size: 1.75rem;
+}
+
+.success-message {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.email-info {
+    background: var(--gray-50);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    border-left: 4px solid var(--accent-color);
+}
+
+.email-address {
+    font-family: monospace;
+    background: var(--white);
+    padding: var(--spacing-sm);
+    border-radius: var(--spacing-xs);
+    border: 1px solid var(--gray-200);
+    word-break: break-all;
+}
+
+.instructions {
+    text-align: left;
+    margin: var(--spacing-xl) 0;
+}
+
+.instructions h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.instructions ol {
+    padding-left: var(--spacing-lg);
+}
+
+.instructions li {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+}
+
+.help-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.help-text {
+    margin-top: var(--spacing-lg);
+    color: var(--gray-600);
+}
+
+/* Helper de confirmation d'email */
+.email-confirmation-helper {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 1px solid #ffc107;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    animation: slideIn 0.3s ease-out;
+}
+
+.confirmation-message {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.warning-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-content p {
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.message-content p:last-of-type {
+    margin-bottom: var(--spacing-md);
+}
+
+.btn-sm {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive pour les messages */
+@media (max-width: 768px) {
+    .help-actions {
+        flex-direction: column;
+    }
+
+    .confirmation-message {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .warning-icon {
+        align-self: center;
+    }
+}

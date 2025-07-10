@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dafnck Army - Révolutionnez votre marketing d'influence</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Suppress Tailwind production warning for development
+        if (typeof window !== 'undefined') {
+            window.__TAILWIND_DISABLE_WARN__ = true;
+        }
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css?v=15">
+    <link rel="stylesheet" href="/css/startup-design-system.css?v=1">
+    <link rel="stylesheet" href="/css/analytics.css?v=1">
+    <link rel="stylesheet" href="/css/videos.css?v=2">
+    <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/components/modal.css">
+    <link rel="stylesheet" href="/css/components/campaign-card.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" href="/assets/logo.svg">
+</head>
+<body>
+    <!-- Loading Screen (hidden by default) -->
+    <div id="loading-screen" class="loading-screen" style="display: none;">
+        <div class="loading-content">
+            <div class="logo-container">
+                <img src="/assets/logo.svg" alt="Dafnck Army" class="loading-logo">
+            </div>
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Chargement...</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container-top-right" class="notification-container notification-container-top-right"></div>
+
+    <!-- Core Scripts -->
+    <script src="/js/config/supabase.js?v=3"></script>
+    <script src="/js/core/state.js?v=3"></script>
+    <script src="/js/core/auth.js?v=801"></script>
+    <script src="/js/core/api.js?v=4"></script>
+    <script src="/js/core/router.js?v=11"></script>
+
+    <!-- Utils -->
+    <script src="/js/utils/validators.js?v=3"></script>
+    <script src="/js/utils/formatters.js?v=3"></script>
+    <script src="/js/utils/helpers.js?v=3"></script>
+
+    <!-- Components -->
+    <script src="/js/components/base-component.js?v=3"></script>
+    <script src="/js/components/navbar.js?v=3"></script>
+    <script src="/js/components/modal.js?v=3"></script>
+    <script src="/js/components/notification.js?v=3"></script>
+    <script src="/js/components/campaign-card.js?v=3"></script>
+    <script src="/js/components/loading.js?v=3"></script>
+
+    <!-- Pages -->
+    <script src="/js/pages/landing.js?v=6"></script>
+    <script src="/js/pages/role-selection.js?v=3"></script>
+
+    <script src="/js/pages/auth.js?v=7"></script>
+    <script src="/js/pages/onboarding.js?v=25"></script>
+    <script src="/js/pages/explorer.js?v=4"></script>
+
+    <!-- Startup Components -->
+    <script src="/js/components/startup-sidebar.js?v=3"></script>
+
+    <script src="/js/pages/startup-explorer.js?v=4"></script>
+    <script src="/js/pages/startup-analytics-new.js?v=1"></script>
+    <script src="/js/pages/startup-videos-new.js?v=11"></script>
+    <script src="/js/pages/startup-metrics.js?v=4"></script>
+    <script src="/js/pages/startup-submissions.js?v=4"></script>
+    <script src="/js/pages/campaign-create.js?v=10"></script>
+    <script src="/js/pages/profile.js?v=4"></script>
+
+    <!-- Simple App -->
+    <script src="/js/app-simple.js?v=4"></script>
+</body>
+</html>
