@@ -1,8 +1,13 @@
 {
+  "name": "dafnck-army",
+  "version": "1.0.0",
+  "description": "Plateforme de marketing d'influence - 100% Vanilla JS + Supabase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
   "dependencies": {
-    "@genwave/svgmaker-mcp": "^0.2.4",
-    "@modelcontextprotocol/sdk": "^1.15.0",
-    "@smithery/sdk": "^1.5.2",
     "dotenv": "^17.2.0"
   }
 }
